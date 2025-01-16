@@ -95,4 +95,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     lastScroll = currentScroll;
   });
+
+
+  const categoryButtons = document.querySelectorAll(".category-btn");
+  const projects = document.querySelectorAll(".project-card");
+
+  categoryButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      // Remove active class from all buttons and add to the clicked one
+      categoryButtons.forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      // Get the selected category
+      const category = button.textContent.trim();
+
+      // Show/hide projects based on the selected category
+      projects.forEach(project => {
+        if (category === "All") {
+          project.style.display = "block";
+        } else {
+          const projectCategories = project.getAttribute("data-category");
+          if (projectCategories.includes(category)) {
+            project.style.display = "block";
+          } else {
+            project.style.display = "none";
+          }
+        }
+      });
+    });
+  });
+
 });
