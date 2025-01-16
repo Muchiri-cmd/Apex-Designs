@@ -300,7 +300,7 @@ nav > ul > a > li {
 }
 
 
-/* Featured Products */
+/*  ---------------------------------------------- Featured Products ----------------------------------------------------------------------------- */
 .featured-products {
   margin-top: 8em;
   background: linear-gradient(to bottom, #f8f9fa, #ffffff);
@@ -432,7 +432,6 @@ nav > ul > a > li {
 .product-info p {
   color: #636e72;
   font-size: 1em;
-
   line-height: 1.6;
 }
 
@@ -496,5 +495,164 @@ nav > ul > a > li {
 
   .product-info h3 {
     font-size: 1.4em;
+  }
+}
+
+
+/* --------------------------------------------- Services ---------------------------------------------------------------------- */
+.services {
+  padding: 5rem 0;
+  background-color: #fff;
+}
+
+
+.header p {
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5em;
+  padding: 0 1em;
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.service-card {
+  padding: 2rem;
+  border-radius: 1rem;
+  transition: all 0.4s ease;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  background: white;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Delay each card's animation */
+.service-card:nth-child(1) { animation-delay: 0.1s; }
+.service-card:nth-child(2) { animation-delay: 0.2s; }
+.service-card:nth-child(3) { animation-delay: 0.3s; }
+.service-card:nth-child(4) { animation-delay: 0.4s; }
+.service-card:nth-child(5) { animation-delay: 0.5s; }
+.service-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Add animation class for scroll-triggered animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.animate-on-scroll.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.service-card {
+  padding: 2rem;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.service-card:nth-child(1) { background-color: #eff6ff; }
+.service-card:nth-child(2) { background-color: #f5f3ff; }
+.service-card:nth-child(3) { background-color: #ecfdf5; }
+.service-card:nth-child(4) { background-color: #fef2f2; }
+.service-card:nth-child(5) { background-color: #fefce8; }
+.service-card:nth-child(6) { background-color: #f0fdfa; }
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.service-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.service-icon {
+  width: 3em;
+  height: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5em;
+  font-size: 2em;
+}
+
+.service-card:nth-child(1) .service-icon { color: #2563eb; }
+.service-card:nth-child(2) .service-icon { color: #7c3aed; }
+.service-card:nth-child(3) .service-icon { color: #059669; }
+.service-card:nth-child(4) .service-icon { color: #dc2626; }
+.service-card:nth-child(5) .service-icon { color: #d97706; }
+.service-card:nth-child(6) .service-icon { color: #0d9488; }
+
+.service-title {
+  flex: 1;
+}
+
+.service-title span {
+  display: block;
+  font-size:2em;
+  color: #666;
+  margin-bottom: 0.25em;
+}
+
+.service-title h3 {
+  font-size: 1.5em;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.service-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-list li {
+  display: flex;
+  align-items: center;
+  color: #4b5563;
+  margin-bottom: 0.75rem;
+}
+
+.service-list li::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: currentColor;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .service-card {
+    margin: 0 1rem;
   }
 }

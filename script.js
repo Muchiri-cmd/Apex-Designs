@@ -47,18 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, 7000); // Increased interval to 7 seconds
 
-  // Pause auto-advance on hover
-  carousel.addEventListener('mouseenter', () => clearInterval(slideInterval));
-  carousel.addEventListener('mouseleave', () => {
-    slideInterval = setInterval(() => {
-      if (!isTransitioning) {
-        const activeSlide = slides.querySelector('[data-active]');
-        let newIndex = [...slides.children].indexOf(activeSlide) + 1;
-        if (newIndex >= slides.children.length) newIndex = 0;
-        updateSlide(newIndex);
-      }
-    }, 7000);
-  });
 
   function updateSlide(newIndex) {
     isTransitioning = true;
