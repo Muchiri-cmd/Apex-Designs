@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Show/hide projects based on the selected category
       projects.forEach(project => {
-        if (category === "All") {
+        if (category === "Combined samples") {
           project.style.display = "block";
         } else {
           const projectCategories = project.getAttribute("data-category");
@@ -124,5 +124,70 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
+
+
+  const observerOptions = {
+    threshold: 0.25
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Start all animations when section comes into view
+        startCountAnimations();
+        // Unobserve after triggering
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observe the stats section
+  observer.observe(document.querySelector('.stats'));
+
+  function startCountAnimations() {
+    const counters = document.querySelectorAll('.stat-number');
+    
+    counters.forEach(counter => {
+      const target = parseInt(counter.getAttribute('data-target'));
+      const duration = 2000; // Animation duration in milliseconds
+      const steps = 100; // Number of steps in animation
+      const increment = target / steps;
+      let current = 0;
+      
+      const updateCounter = () => {
+        current += increment;
+        if (current < target) {
+          counter.innerText = Math.round(current).toLocaleString() + (counter.dataset.target === "99" ? "%" : "+");
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.innerText = target.toLocaleString() + (counter.dataset.target === "99" ? "%" : "+");
+        }
+      };
+      
+      updateCounter();
+    });
+  }
+
+  const scrollButton = document.getElementById('scrollTop');
+    
+    // Show/hide scroll button based on scroll position
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollButton.style.opacity = '1';
+        scrollButton.style.visibility = 'visible';
+      } else {
+        scrollButton.style.opacity = '0';
+        scrollButton.style.visibility = 'hidden';
+      }
+    });
+    
+    // Smooth scroll to top
+    scrollButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
 
 });
